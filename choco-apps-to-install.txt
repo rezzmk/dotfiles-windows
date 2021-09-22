@@ -11,3 +11,10 @@ Brave
 Fiddler
 vscode
 nvm.portable
+7zip.install
+python3
+notepadplusplus.install
+adobereader
+telegram
+discord
+slack
