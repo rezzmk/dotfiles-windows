@@ -21,28 +21,31 @@ RunAction -m  "(SETUP) Installing choco apps..." -a {
 	.("$ScriptsPath\choco_install_apps.ps1")
 }
 
-# Git - Configuration
-RunAction -m "(SETUP) Configuring Git..." -a {
-	.("$ConfigurationsPath\git-config.ps1")
-}
-
 # Windows Terminal Plugins
-RunAction -m "(SETUP) Set-up Windows Terminal for Git (posh)" -a {
-	Install-Module posh-git -Force -Scope CurrentUser
-	Install-Module oh-my-posh -Force -Scope CurrentUser
-	Set-Prompt
-	Install-Module -Name PSReadLine -Scope CurrentUser -Force -SkipPublisherCheck
-	Add-Content $PROFILE "`nImport-Module posh-git`nImport-Module oh-my-posh`nSet-Theme Paradox"
+RunAction -m "(SETUP) Installing windows terminal modules..." -a {
+	.("$ScriptsPath\windows-terminal-modules.ps1")
 }
 
 # Nerd Fonts
-RunAction -m "(SETUP) Installing nerd-fonts..." -a {
-	git clone https://github.com/ryanoasis/nerd-fonts.git
-	Set-Location nerd-fonts
-	.\install.ps1
-	Set-Location ..\
+if (-Not (Test-Path -Path "nerd-fonts")) {
+	RunAction -m "(SETUP) Installing nerd-fonts..." -a {
+		git clone https://github.com/ryanoasis/nerd-fonts.git
+		Set-Location nerd-fonts
+		.\install.ps1
+		Set-Location ..\
 
-	Write-Host "MANUALLY SETUP FONT ON WINDOWS TERMINAL CONFIG, MesloLGM NF" -ForegroundColor Red
+		Write-Host "MANUALLY SETUP FONT ON WINDOWS TERMINAL CONFIG, MesloLGM NF" -ForegroundColor Red
+	}
+}
+
+# Git - Configuration
+RunAction -m "(SETUP) Configuring git..." -a {
+	.("$ConfigurationsPath\git-config.ps1")
+}
+
+# Windows Settings
+RunAction -m "(SETUP) Configuring Windows..." -a {
+	.("$ConfigurationsPath\windows-config.ps1")
 }
 
 # Windows Explorer Settings
@@ -54,3 +57,6 @@ RunAction -m "(SETUP) Configuring Windows Explorer settings..." -a {
 RunAction -m "(SETUP) Generating symlinks..." -a {
 	.("$ScriptsPath\generate-symlinks.ps1")
 }
+
+# Install WSL2 with ubuntu
+wsl --install
