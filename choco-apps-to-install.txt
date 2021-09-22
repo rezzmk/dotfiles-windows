@@ -3,7 +3,6 @@ curl
 nuget-commandline
 python
 ruby
-sourcecodepro
 GoogleChrome
 FireFox
 Opera
@@ -18,3 +17,4 @@ adobereader
 telegram
 discord
 slack
+sysinternals

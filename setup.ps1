@@ -13,7 +13,9 @@ $ConfigurationsPath = $PSScriptRoot + "\configs"
 
 # Installs chocolatey
 RunAction -m "(SETUP) Installing Chocolatey..." -a { 
-	Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) 
+	if (-Not (choco -v)) {
+		Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) 
+	}
 }
 
 # Installs apps via chocolatey
