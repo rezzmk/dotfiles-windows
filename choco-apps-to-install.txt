@@ -1,1 +1,13 @@
 vlc
+curl
+nuget-commandline
+python
+ruby
+sourcecodepro
+GoogleChrome
+FireFox
+Opera
+Brave
+Fiddler
+vscode
+nvm.portable

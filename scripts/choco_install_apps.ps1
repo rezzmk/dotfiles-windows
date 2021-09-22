@@ -2,7 +2,7 @@
 
 foreach ($app in $applicationsArray) {
 	Write-Host "Installing $app ..."
-	& choco install $app /y
+	& choco install $app --yes --limit-output
 }
 
 Write-Host "Installing applications with custom parameters..."

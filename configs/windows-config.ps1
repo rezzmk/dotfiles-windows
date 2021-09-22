@@ -1,5 +1,38 @@
+# Most of the code in this file was taken or adapted from https://github.com/jayharris/dotfiles-windows/blob/master/deps.ps1
+# =========
+
 # Hostname
 (Get-WmiObject Win32_ComputerSystem).Rename("REZZ-DESKTOP") | Out-Null
+
+# Features
+Enable-WindowsOptionalFeature -Online -All -FeatureName `
+    "IIS-BasicAuthentication", `
+    "IIS-DefaultDocument", `
+    "IIS-DirectoryBrowsing", `
+    "IIS-HttpCompressionDynamic", `
+    "IIS-HttpCompressionStatic", `
+    "IIS-HttpErrors", `
+    "IIS-HttpLogging", `
+    "IIS-ISAPIExtensions", `
+    "IIS-ISAPIFilter", `
+    "IIS-ManagementConsole", `
+    "IIS-RequestFiltering", `
+    "IIS-StaticContent", `
+    "IIS-WebSockets", `
+    "IIS-WindowsAuthentication" `
+    -NoRestart | Out-Null
+
+Enable-WindowsOptionalFeature -Online -All -FeatureName `
+    "NetFx3", `
+    "NetFx4-AdvSrvs", `
+    "NetFx4Extended-ASPNET45", `
+    "IIS-NetFxExtensibility", `
+    "IIS-NetFxExtensibility45", `
+    "IIS-ASPNET", `
+    "IIS-ASPNET45" `
+    -NoRestart | Out-Null
+
+webpicmd /Install /AcceptEula /Products:"UrlRewrite2"
 
 # Developer mode
 Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" "AllowDevelopmentWithoutDevLicense" 1
