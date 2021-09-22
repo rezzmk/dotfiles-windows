@@ -1,34 +1,24 @@
+# Setup script;
+# This script will take care of:
+#   1) install chocolatey as a package manager
+#   2) run software-installer script
+#   3) run configuration scripts
+
 #Requires -RunAsAdministrator
+
+Import-Module utilities
 
 $ScriptsPath = $PSScriptRoot + "\scripts"
 $ConfigurationsPath = $PSScriptRoot + "\configs"
 
-# Copy and load modules
-$modulesPath = "$home\Documents\WindowsPowerShell\Modules"
-
-# - utilities
-New-Item -ItemType Directory -Force -Path $modulesPath\utilities | Out-Null
-Copy-Item .\utilities.psm1 -Destination $modulesPath\utilities\utilities.psm1 | Out-Null
-
-Import-Module utilities
-
-#
-# Setup
-#
-
-# Chocolatey
+# Installs chocolatey
 RunAction -m "(SETUP) Installing Chocolatey..." -a { 
 	Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) 
-} 
-
-# Vim
-RunAction -m  "(SETUP) Installing Vim..." -a {
-	choco install vim --yes --params '/NoDesktopShortcuts /NoDefaultVimrc'
 }
 
-# Git - Installation
-RunAction -m  "(SETUP) Installing Git..." -a {
-	choco install git --yes --params '/GitAndUnixToolsOnPath /WindowsTerminal'
+# Installs apps via chocolatey
+RunAction -m  "(SETUP) Installing choco apps..." -a {
+	.("$ScriptsPath\choco_install_apps.ps1")
 }
 
 # Git - Configuration

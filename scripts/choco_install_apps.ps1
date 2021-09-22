@@ -1,9 +1,11 @@
-$appList = "googlechrome,firefox,7zip,dotnetcore-sdk,dotnetcore-windowshosting"
-if ([string]::IsNullOrWhiteSpace($appList) -eq $false) {
-	$appArray = $appList -split "," | foreach { "$($_.Trim())" }
+[string[]]$applicationsArray = Get-Content -Path choco-apps-to-install.txt
 
-	foreach ($app in $appArray) {
-		Write-Host "Installing $app ..."
-		& choco install $app /y
-	}
+foreach ($app in $applicationsArray) {
+	Write-Host "Installing $app ..."
+	& choco install $app /y
 }
+
+Write-Host "Installing applications with custom parameters..."
+
+choco install vim --yes --params '/NoDesktopShortcuts /NoDefaultVimrc'
+choco install git --yes --params '/GitAndUnixToolsOnPath /WindowsTerminal'

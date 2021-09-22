@@ -1,0 +1,6 @@
+googlechrome
+firefox
+brave
+7zip
+dotnetcore-sdk
+dotnetcore-windowshosting
