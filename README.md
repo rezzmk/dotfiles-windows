@@ -14,5 +14,4 @@ git clone https://github.com/rezzmk/dotfiles-windows.git ~/.repos/rezzmk/dotfile
 ```
 
 TODO:
-- Add chocolatey/scoop to install most of my tools in one run
 - Finish adding the configuration files I need

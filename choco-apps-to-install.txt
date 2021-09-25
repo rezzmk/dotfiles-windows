@@ -1,3 +1,4 @@
+microsoft-windows-terminal
 vlc
 curl
 nuget-commandline
@@ -16,5 +17,17 @@ notepadplusplus.install
 adobereader
 telegram
 discord
+vscode-insiders
+whatsapp
+linqpad
 slack
 sysinternals
+lightshot
+jetbrainstoolbox
+anaconda3
+nodejs
+autohotkey
+hxd
+zoom
+powertoys
+qbittorrent

@@ -55,10 +55,5 @@ RunAction -m "(SETUP) Configuring Windows Explorer settings..." -a {
 	.("$ConfigurationsPath\windows-explorer-config.ps1")
 }
 
-# Symlinks
-RunAction -m "(SETUP) Generating symlinks..." -a {
-	.("$ScriptsPath\generate-symlinks.ps1")
-}
-
 # Install WSL2 with ubuntu
 wsl --install
