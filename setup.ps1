@@ -13,9 +13,7 @@ $ConfigurationsPath = $PSScriptRoot + "\configs"
 
 # Installs chocolatey
 RunAction -m "(SETUP) Installing Chocolatey..." -a { 
-	if (-Not (choco -v)) {
-		Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) 
-	}
+	Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) 
 }
 
 # Installs apps via chocolatey
@@ -54,6 +52,11 @@ RunAction -m "(SETUP) Configuring Windows..." -a {
 RunAction -m "(SETUP) Configuring Windows Explorer settings..." -a {
 	.("$ConfigurationsPath\windows-explorer-config.ps1")
 }
+
+# Setup AutoHotKey scripts
+$StartupFolder = [environment]::getfolderpath("Startup")
+Copy-Item "scripts/run-remap-capslock-asadmin.vbs" $StartupFolder
+
 
 # Install WSL2 with ubuntu
 wsl --install
