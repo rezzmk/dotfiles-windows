@@ -31,3 +31,5 @@ hxd
 zoom
 powertoys
 qbittorrent
+nuget.commandline
+docfx

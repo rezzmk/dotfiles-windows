@@ -57,6 +57,5 @@ RunAction -m "(SETUP) Configuring Windows Explorer settings..." -a {
 $StartupFolder = [environment]::getfolderpath("Startup")
 Copy-Item "scripts/run-remap-capslock-asadmin.vbs" $StartupFolder
 
-
 # Install WSL2 with ubuntu
 wsl --install

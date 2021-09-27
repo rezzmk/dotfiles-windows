@@ -23,17 +23,20 @@ Write-Output "`tdotfiles-common path: $DotfilesCommonPath"
 Write-Output "`tapp-data path: $AppData"
 Write-Output "`tuser-profile path: $AppData"
 
-# For jetbrains ideavim plugin configuration
+# For ideavim plugin configuration
 Symlink "$DotfilesCommonPath\vim\.ideavimrc" "~\.ideavimrc" 
+Symlink "$DotfilesCommonPath\vim\.vimrc" "~\.vimrc" 
 
 # VS Code extensions and settings
-Symlink "$DotfilesCommonPath\vscode\config\settings.json" "$AppData\Code\User\settings.json" 
-
-# Behold bitches!
-Write-Output "`nSymlinking extensions like a true professional gamer"
-$VsCodeExtensionsPath = $DotfilesCommonPath + "\vscode\extensions"
-$Extensions = Get-ChildItem $VsCodeExtensionsPath | Where-Object {$_.PSIsContainer} | Foreach-Object {$_.Name}
-Write-Output "The following extensions are going to be symlinked: $Extensions"
-Foreach($extension in $Extensions) {
-	Symlink "$VsCodeExtensionsPath\$extension" "$UserProfile\.vscode\extensions\$extension"
+if ($false) {
+    Symlink "$DotfilesCommonPath\vscode\config\settings.json" "$AppData\Code\User\settings.json" 
+    
+    # Behold bitches!
+    Write-Output "`nSymlinking extensions like a true professional gamer"
+    $VsCodeExtensionsPath = $DotfilesCommonPath + "\vscode\extensions"
+    $Extensions = Get-ChildItem $VsCodeExtensionsPath | Where-Object {$_.PSIsContainer} | Foreach-Object {$_.Name}
+    Write-Output "The following extensions are going to be symlinked: $Extensions"
+    Foreach($extension in $Extensions) {
+    	Symlink "$VsCodeExtensionsPath\$extension" "$UserProfile\.vscode\extensions\$extension"
+    }
 }
