@@ -1,3 +1,4 @@
+postman
 microsoft-windows-terminal
 vlc
 curl
@@ -33,3 +34,5 @@ powertoys
 qbittorrent
 nuget.commandline
 docfx
+speedcrunch
+wireshark

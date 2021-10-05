@@ -8,7 +8,3 @@ function LoadUtilities {
 # Loads the utilities module.
 # It will rewrite any existent utilities module
 LoadUtilities
-
-# Run the setup.ps1 file
-
-. .\setup.ps1

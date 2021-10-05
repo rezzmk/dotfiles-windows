@@ -20,5 +20,37 @@ function RunAction {
 	ReloadPath
 }
 
+function ChocoInstallApps {
+  param(
+    [Parameter(Mandatory=$true, Position=0)]
+    [string[]] $apps
+  )
+
+  foreach ($app in $apps) {
+    $res = (choco list -lo | Where-Object { $_.ToLower().StartsWith($app.ToLower()) })
+    if ($null -eq $res) {
+      Write-Host "Installing $app..." -ForegroundColor Yellow
+      & choco install $app --yes --limit-output --log-file choco.log
+    }
+    else {
+      Write-Host "$app already installed!" -ForegroundColor Green
+    }
+  }
+}
+
+function ChocoInstallWinFeatures {
+  param(
+    [Parameter(Mandatory=$true, Position=0)]
+    [string[]] $apps
+  )
+
+  foreach ($app in $apps) {
+    Write-Host "Installing $app..." -ForegroundColor Yellow
+    & choco install $app --yes --source windowsfeatures --log-file choco.log
+  }
+}
+
 Export-ModuleMember -Function RunAction
 Export-ModuleMember -Function ReloadPath
+Export-ModuleMember -Function ChocoInstallApps
+Export-ModuleMember -Function ChocoInstallWinFeatures
