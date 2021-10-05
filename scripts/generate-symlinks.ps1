@@ -27,16 +27,19 @@ Write-Output "`tuser-profile path: $AppData"
 Symlink "$DotfilesCommonPath\vim\.ideavimrc" "~\.ideavimrc" 
 Symlink "$DotfilesCommonPath\vim\.vimrc" "~\.vimrc" 
 
+Symlink "$DotfilesCommonPath\powershell\profile.ps1" $env:userprofile\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
+Symlink "$DotfilesCommonPath\powershell\profile.ps1" $env:userprofile\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+
 # VS Code extensions and settings
-if ($false) {
-    Symlink "$DotfilesCommonPath\vscode\config\settings.json" "$AppData\Code\User\settings.json" 
-    
-    # Behold bitches!
-    Write-Output "`nSymlinking extensions like a true professional gamer"
-    $VsCodeExtensionsPath = $DotfilesCommonPath + "\vscode\extensions"
-    $Extensions = Get-ChildItem $VsCodeExtensionsPath | Where-Object {$_.PSIsContainer} | Foreach-Object {$_.Name}
-    Write-Output "The following extensions are going to be symlinked: $Extensions"
-    Foreach($extension in $Extensions) {
-    	Symlink "$VsCodeExtensionsPath\$extension" "$UserProfile\.vscode\extensions\$extension"
-    }
-}
+#if ($false) {
+#    Symlink "$DotfilesCommonPath\vscode\config\settings.json" "$AppData\Code\User\settings.json" 
+#    
+#    # Behold bitches!
+#    Write-Output "`nSymlinking extensions like a true professional gamer"
+#    $VsCodeExtensionsPath = $DotfilesCommonPath + "\vscode\extensions"
+#    $Extensions = Get-ChildItem $VsCodeExtensionsPath | Where-Object {$_.PSIsContainer} | Foreach-Object {$_.Name}
+#    Write-Output "The following extensions are going to be symlinked: $Extensions"
+#    Foreach($extension in $Extensions) {
+#    	Symlink "$VsCodeExtensionsPath\$extension" "$UserProfile\.vscode\extensions\$extension"
+#    }
+#}
