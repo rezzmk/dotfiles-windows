@@ -1,5 +1,6 @@
 Install-Module posh-git -Force -Scope CurrentUser
 Install-Module oh-my-posh -Force -Scope CurrentUser
+Install-Module Terminal-Icons -Force -Scope CurrentUser -Repository PSGallery
 
 Import-Module oh-my-posh
 Import-Module posh-git

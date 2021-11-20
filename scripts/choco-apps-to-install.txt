@@ -36,3 +36,6 @@ nuget.commandline
 docfx
 speedcrunch
 wireshark
+delta
+googledrive
+yarn
