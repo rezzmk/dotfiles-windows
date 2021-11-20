@@ -56,15 +56,6 @@ if ($configurewindows -or $force) {
 	ReloadPath
 }
 
-if ($nerdfonts -or $force -or (-Not (Test-Path -Path "nerd-fonts"))) {
-	Write-Host "Installing nerd-fonts... This WILL take a while..." -ForegroundColor Yellow
-
-	git clone https://github.com/rezzmk/nerd-fonts.git
-	Set-Location nerd-fonts
-	.\install.ps1
-	Set-Location ..\
-}
-
 if ($configurewindowsexplorer -or $force) {
 	Write-Host "Configuring windows explorer..." -ForegroundColor Yellow
 	.("$PSScriptRoot\config\windows-explorer-config.ps1")
@@ -77,3 +68,13 @@ if ($installwsl2 -or $force) {
 
 	wsl --install
 }
+
+if ($nerdfonts -or $force -or (-Not (Test-Path -Path "nerd-fonts"))) {
+	Write-Host "Installing nerd-fonts... This WILL take a while..." -ForegroundColor Yellow
+
+	git clone https://github.com/rezzmk/nerd-fonts.git
+	Set-Location nerd-fonts
+	.\install.ps1
+	Set-Location ..\
+}
+
